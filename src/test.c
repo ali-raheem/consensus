@@ -4,8 +4,6 @@
 #include <string.h>
 #include <assert.h>
 
-#include <sys/mman.h>
-
 int main(int argc, char* argv[]) {
   assert(CONSENSUS_INIT_OK == consensus_init());
 
@@ -25,7 +23,6 @@ int main(int argc, char* argv[]) {
     printf("\n\n");
   }
 
-  //  mprotect(secrets, CONSENSUS_SECRET_LENGTH*count, PROT_READ | PROT_WRITE);
   puts("Check hashes");
   assert(CONSENSUS_CHECK_OK == consensus_check_hashes(count, hashes));
   puts("Verify hashes");
@@ -35,7 +32,7 @@ int main(int argc, char* argv[]) {
   puts("Generate shared");
   assert(CONSENSUS_GENERATE_OK == consensus_generate_shared(count, secrets, shared));
   for(i = 0; i < CONSENSUS_SECRET_LENGTH; i++)
-    printf("%2X", shared[i]);
+    printf("%02X", shared[i]);
   puts("");
   
 }
