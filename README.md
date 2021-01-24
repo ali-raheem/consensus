@@ -2,7 +2,7 @@
 
 Small library for multiple parties to estbalish a shared random number. Even if you are the only honest party.
 
-**This version is not compatible with [consensus-sodium](https://github.com/ali-raheem/consensus-sodium) which uses libsodium.**
+**This version is not necessarily compatible with [consensus-sodium](https://github.com/ali-raheem/consensus-sodium) which uses libsodium but both now use the blake2b-256 hash**
 
 ## Algorithim
 

@@ -1,16 +1,16 @@
 #include "consensus.h"
 
 int consensus_init() {
-  if(register_hash(&sha256_desc) == -1)
+  if(register_hash(&blake2b_256_desc) == -1)
     return CONSENSUS_INIT_ERROR;
   return CONSENSUS_INIT_OK;
 }
 
 void consensus_hash(unsigned char hash[CONSENSUS_HASH_LENGTH], size_t len, unsigned char data[len]) {
   hash_state md;
-  sha256_init(&md);
-  sha256_process(&md, data, len);
-  sha256_done(&md, hash);
+  blake2b_256_init(&md);
+  blake2b_process(&md, data, len);
+  blake2b_done(&md, hash);
 }
 
 int consensus_generate_secret(unsigned char secret[CONSENSUS_SECRET_LENGTH], unsigned char hash[CONSENSUS_HASH_LENGTH]){
