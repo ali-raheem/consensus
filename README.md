@@ -12,7 +12,7 @@ Small library for multiple parties to estbalish a shared random number. Even if 
 
 ## Dependencies
 
-- libtomcrypt
+- [libtomcrypt](https://github.com/libtom/libtomcrypt) due to extreme portability
 
 ## Build
 
