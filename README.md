@@ -2,7 +2,7 @@
 
 Small library for multiple parties to estbalish a shared random number. Even if you are the only honest party.
 
-**This version is not necessarily compatible with [consensus-sodium](https://github.com/ali-raheem/consensus-sodium) which uses libsodium but both now use the blake2b-256 hash**
+**This version is not necessarily compatible with [consensus-sodium](https://github.com/ali-raheem/consensus-sodium) which uses libsodium but both now use the blake2b-256 hash.**
 
 ## Algorithim
 
@@ -22,6 +22,8 @@ Small library for multiple parties to estbalish a shared random number. Even if 
 gcc -o bin/consensus_test src/test.c src/consensus.c -ltomcrypt
 ```
 
+Can be built as a static library as usual and archived with tomcrypt.
+
 ## Usage
 
-See `src/test.c`, each party only generates one secret, disseminating the hash, and then the secret is left up to the user.
+See `src/test.c`, each party only generates one secret, disseminating the hash, and then the secret is left up to the user. For most applications you will want to process the secret for example hasing it.
