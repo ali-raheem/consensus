@@ -30,14 +30,4 @@ int consensus_verify_secrets(size_t count,
 int consensus_generate_shared(size_t count,
 			      unsigned char secrets[count][CONSENSUS_SECRET_LENGTH],
 			      unsigned char* buffer);
-/*
-int consensus_generate_secret(unsigned char *secret, unsigned char *hash);
-int consensus_check_hashes(size_t count, unsigned char **hashes);
-int consensus_verify_secrets(size_t count,
-			     unsigned char **hashes,
-			     unsigned char **secrets);
-int consensus_generate_shared(size_t count,
-			      unsigned char **secrets,
-			      unsigned char* buffer);
-			      void consensus_hash(unsigned char* data, unsigned char* hash, size_t len);*/
 #endif
