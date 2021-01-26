@@ -1,33 +1,27 @@
-#ifndef CONSENSUS_H
-#define CONSENSUS_H
+#pragma once
 
 #include <tomcrypt.h>
 #include <string.h>
+#include <stdint.h>
+
+typedef enum consensusResult {
+  CONSENSUS_OK = 0,
+  CONSENSUS_ERROR_INIT_FAILED,
+  CONSENSUS_ERROR_DUPLICATE_HASH,
+  CONSENSUS_ERROR_HASH_NOT_FOUND
+} consensusResult;
 
 #define CONSENSUS_SECRET_LENGTH 32
 #define CONSENSUS_HASH_LENGTH 32
 
-#define CONSENSUS_INIT_OK 0
-#define CONSENSUS_INIT_ERROR -1
+consensusResult consensus_init(void);
+void consensus_hash(uint8_t hash[CONSENSUS_HASH_LENGTH], size_t len, uint8_t data[len]);
+consensusResult consensus_generate_secret(uint8_t secret[CONSENSUS_SECRET_LENGTH], uint8_t hash[CONSENSUS_HASH_LENGTH]);
+consensusResult consensus_check_hashes(size_t count, uint8_t hashes[count][CONSENSUS_HASH_LENGTH]);
+consensusResult consensus_verify_secrets(size_t count,
+			     uint8_t hashes[count][CONSENSUS_HASH_LENGTH],
+			     uint8_t secrets[count][CONSENSUS_HASH_LENGTH]);
+consensusResult consensus_generate_shared(size_t count,
+			      uint8_t secrets[count][CONSENSUS_SECRET_LENGTH],
+			      uint8_t * buffer);
 
-#define CONSENSUS_RNG_OK 0
-
-#define CONSENSUS_VERIFY_OK 0
-#define CONSENSUS_VERIFY_ERROR -1
-
-#define CONSENSUS_CHECK_OK 0
-#define CONSENSUS_CHECK_ERROR -1
-
-#define CONSENSUS_GENERATE_OK 0
-
-int consensus_init(void);
-void consensus_hash(unsigned char hash[CONSENSUS_HASH_LENGTH], size_t len, unsigned char data[len]);
-int consensus_generate_secret(unsigned char secret[CONSENSUS_SECRET_LENGTH], unsigned char hash[CONSENSUS_HASH_LENGTH]);
-int consensus_check_hashes(size_t count, unsigned char hashes[count][CONSENSUS_HASH_LENGTH]);
-int consensus_verify_secrets(size_t count,
-			     unsigned char hashes[count][CONSENSUS_HASH_LENGTH],
-			     unsigned char secrets[count][CONSENSUS_HASH_LENGTH]);
-int consensus_generate_shared(size_t count,
-			      unsigned char secrets[count][CONSENSUS_SECRET_LENGTH],
-			      unsigned char* buffer);
-#endif
