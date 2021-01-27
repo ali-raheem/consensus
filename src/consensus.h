@@ -3,6 +3,7 @@
 #include <tomcrypt.h>
 #include <string.h>
 #include <stdint.h>
+#include <stdbool.h>
 
 typedef enum consensusResult {
   CONSENSUS_OK = 0,
